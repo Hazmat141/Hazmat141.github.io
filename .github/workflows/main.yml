@@ -26,15 +26,17 @@ jobs:
       uses: actions/setup-node@v4
       with:
         node-version: ${{ env.node_version }}
-    - run: npm i
-    - run: npm run build
+    #- run: npm i
+    #- run: npm run build
+    # this ^ doesnt work, leave commented out
+    
     # When the dist_dir is ready, deploy it to neocities
     - name: Deploy to neocities
       uses: bcomnes/deploy-to-neocities@master # dont use master in production
       with:
         api_key: ${{ secrets.NEOCITIES_API_TOKEN }}
         cleanup: true
-        dist_dir: public
+        dist_dir: Neo
         protected_files: 'dropbox/*'
-        neocities_supporter: true # set this to true if you have a supporter account and want to bypass unsuported files filter.
+        neocities_supporter: false # set this to true if you have a supporter account and want to bypass unsuported files filter.
         preview_before_deploy: true
